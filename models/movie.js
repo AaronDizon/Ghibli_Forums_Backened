@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     original_title: DataTypes.STRING,
     original_title_romanised: DataTypes.STRING,
     image: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.STRING(1000),
     director: DataTypes.STRING,
     producer: DataTypes.STRING,
     release_date: DataTypes.STRING
