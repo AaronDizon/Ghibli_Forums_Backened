@@ -16,24 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   comment.init({
-    desciption: {
+    description: {
       type: DataTypes.STRING, allowNull: false, 
       validate: {
         notNull: true
       }
     },
-    userId: {
-      type: DataTypes.INTEGER, allowNull: false,
-      validate: {
-        notNull: true
-      }
-    },
-    threadId: {
-      type: DataTypes.INTEGER, allowNull: false, 
-      validate: {
-        notNull: true
-      }
-    }
+    userId: DataTypes.INTEGER,
+    threadId: DataTypes.INTEGER, 
   }, {
     sequelize,
     modelName: 'comment',

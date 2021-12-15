@@ -18,7 +18,7 @@ userRoutes.post('/:userId/thread/:movieId', userController.startThread)
 userRoutes.get('/:userId/threads', userController.getUserThreads)
 
 //create comment
-userRoutes.post('/:userId/:threadId/comment', userController.comment)
+userRoutes.post('/:userId/thread/:threadId/comment', userController.comment)
 
 
 module.exports = userRoutes

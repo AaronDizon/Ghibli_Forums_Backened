@@ -9,6 +9,7 @@ userController.signup = async (req, res) => {
                 email: req.body.email,
                 password: req.body.password
         })
+        res.json(user)
     }catch (err) {
         res.json(err)
     }
@@ -38,29 +39,6 @@ userController.verifyUser = async (req, res) => {
     }
 }
 
-//start a thread and associate it with both the movie and the user 
-userController.startThread = async (req, res) => {
-    try{
-        const movie = await models.movie.findOne({
-            where: {
-                id: req.params.movieId
-            }
-        })
-        const user = await models.user.findOne({
-            where: {
-                id: req.params.userId
-            }
-        })
-        const thread = await models.thread.create({
-            description: req.body.description
-        })
-        await movie.addThreads(thread)
-        await user.addThreads(thread)
-
-    }catch (err) {
-        res.json(err)
-    }
-}
 
 //get all threads of a user 
 userController.getUserThreads = async (req, res) => {
@@ -79,6 +57,33 @@ userController.getUserThreads = async (req, res) => {
     }
 }
 
+//start a thread and associate it with both the movie and the user 
+userController.startThread = async (req, res) => {
+    try{
+        const movie = await models.movie.findOne({
+            where: {
+                id: req.params.movieId
+            }
+        })
+        const user = await models.user.findOne({
+            where: {
+                id: req.params.userId
+            }
+        })
+        const thread = await models.thread.create({
+            description: req.body.description
+        })
+
+        await movie.addThreads(thread)
+        await user.addThreads(thread)
+
+        res.json(thread)
+
+    }catch (err) {
+        res.json(err)
+    }
+}
+
 //create a comment and associate it with both the thread and user
 userController.comment = async (req, res) => {
     try {
@@ -87,7 +92,7 @@ userController.comment = async (req, res) => {
                 id: req.params.userId
             }
         })
-        const thread = await models.findOne({
+        const thread = await models.thread.findOne({
             where: {
                 id: req.params.threadId
             }
@@ -95,6 +100,12 @@ userController.comment = async (req, res) => {
         const comment = await models.comment.create({
             description: req.body.description
         })
+        
+        await thread.addComments(comment)
+        await user.addComments(comment)
+
+        res.json(comment)
+
     }catch (err) {
         res.json(err)
     }

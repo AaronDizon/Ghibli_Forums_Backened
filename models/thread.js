@@ -23,18 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         notNull: true
       }
     },
-    userId: {
-      type: DataTypes.INTEGER, allowNull: false,
-      validate : {
-        notNull: true
-      }
-    },
-    movieId: {
-      type: DataTypes.INTEGER, allowNull: false,
-      validate: {
-        notNull: true
-      }
-    },
+    userId: DataTypes.INTEGER, 
+  
+    movieId: DataTypes.INTEGER, 
   }, {
     sequelize,
     modelName: 'thread',
