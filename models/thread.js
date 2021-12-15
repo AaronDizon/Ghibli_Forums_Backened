@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.thread.hasMany(models.comment)
+      models.thread.belongsTo(models.user)
+      models.thread.belongsTo(models.movie)
     }
   };
   thread.init({
