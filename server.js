@@ -7,7 +7,12 @@ app.use(require('morgan')('tiny'))
 app.use(require('cors')())
 app.use(express.json())
 
+const models = require('./models')
+
 //routes
+
+const movieRoutes = require('./routes/movieRoutes')
+app.use('/movies', movieRoutes)
 
 
 app.listen(3001, () => {

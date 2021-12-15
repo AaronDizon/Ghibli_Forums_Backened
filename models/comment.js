@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   comment.init({
     desciption: {
-      type: DataTypes.STRING, allnowNull: false, 
+      type: DataTypes.STRING, allowNull: false, 
       validate: {
         notNull: true
       }
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     postId: {
       type: DataTypes.INTEGER, allowNull: false, 
       validate: {
-        notNull
+        notNull: true
       }
     }
   }, {

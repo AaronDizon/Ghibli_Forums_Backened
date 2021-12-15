@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   thread.init({
     description: {
-      type: DataTypes.STRING, allNull: false,
+      type: DataTypes.STRING, allowNull: false,
       validate: {
         notNull: true
       }
