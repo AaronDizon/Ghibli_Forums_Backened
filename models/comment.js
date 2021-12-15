@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: true
       }
     },
-    postId: {
+    threadId: {
       type: DataTypes.INTEGER, allowNull: false, 
       validate: {
         notNull: true
