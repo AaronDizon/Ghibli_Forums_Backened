@@ -20,5 +20,10 @@ userRoutes.get('/:userId/threads', userController.getUserThreads)
 //create comment
 userRoutes.post('/:userId/thread/:threadId/comment', userController.comment)
 
+//gets a user from the threadId (to display username in the thread)
+userRoutes.get('/:threadId', userController.threadUser)
+
+//gets a user from the commentId (to display username of the comment)
+userRoutes.get('/:commentId', userController.commentUser)
 
 module.exports = userRoutes

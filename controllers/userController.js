@@ -111,5 +111,31 @@ userController.comment = async (req, res) => {
     }
 }
 
+//finds the user of the thread
+userController.threadUser = async (req, res) => {
+    try {
+        const user = await models.user.findOne({
+            where: {
+                id: req.params.threadId
+            }
+        })
+        res.json(user)
+    }catch (err) {
+        res.json(err)
+    }
+}
+
+//finds the user of the comment
+userController.commentUser = async (req, res) => {
+    try {
+        const user = await models.user.findOne({
+            where: {
+                id: req.params.commentId
+            }
+        })
+    }catch (err) {
+        res.json(err)
+    }
+}
 
 module.exports = userController

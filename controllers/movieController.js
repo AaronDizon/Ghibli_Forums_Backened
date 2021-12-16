@@ -8,7 +8,7 @@ movieController.getMovies = async (req, res) => {
         res.json({ movies})
 
     }catch (err) {
-        console.log(err)
+        res.json(err)
     }
 }
 
@@ -21,7 +21,35 @@ movieController.getSingleMovie = async (req, res) => {
         })
         res.json({ movie })
     }catch (err) {
-        console.log(err)
+        res.json(err)
+    }
+}
+
+movieController.getMovieThreads = async (req, res) => {
+    try {
+        const movie = await models.movie.findOne({
+            where: {
+                id: req.params.movieId
+            }
+        })
+        const threads = await movie.getThreads()
+        res.json(threads)
+    }catch (err) {
+        res.json(err)
+    }
+}
+
+movieController.getThreadComments = async (req, res) => {
+    try {
+        const thread = await models.thread.findOne({
+            where: {
+                id: req.params.threadId
+            }
+        })
+        const comments = await thread.getComments()
+        res.json(comments)
+    }catch (err) {
+        res.json(err)
     }
 }
 
