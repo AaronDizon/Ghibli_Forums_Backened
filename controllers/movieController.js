@@ -17,7 +17,9 @@ movieController.getSingleMovie = async (req, res) => {
         const movie = await models.movie.findOne({
             where: {
                 id: req.params.movieId
-            }
+            },
+            include: models.thread
+
         })
         res.json({ movie })
     }catch (err) {
@@ -32,7 +34,12 @@ movieController.getMovieThreads = async (req, res) => {
                 id: req.params.movieId
             }
         })
-        const threads = await movie.getThreads()
+        const threads = await movie.getThreads( {include: models.user})
+
+        // const threads = await movie.findAll({
+        //     include: { model: thread, as: 'thread' }
+        //   });
+        
         res.json(threads)
     }catch (err) {
         res.json(err)
@@ -46,7 +53,7 @@ movieController.getThreadComments = async (req, res) => {
                 id: req.params.threadId
             }
         })
-        const comments = await thread.getComments()
+        const comments = await thread.getComments( {include: models.user})
         res.json(comments)
     }catch (err) {
         res.json(err)

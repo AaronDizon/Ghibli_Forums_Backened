@@ -103,7 +103,7 @@ userController.comment = async (req, res) => {
         
         await thread.addComments(comment)
         await user.addComments(comment)
-
+        console.log(comment)
         res.json(comment)
 
     }catch (err) {
