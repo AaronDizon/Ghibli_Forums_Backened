@@ -138,4 +138,67 @@ userController.commentUser = async (req, res) => {
     }
 }
 
+//edits thread based on threadId
+userController.editThread = async (req, res) => {
+    try {
+        const thread = await models.thread.findOne({
+            where: {
+                id: req.params.threadId
+            }
+        })
+        const update = req.body
+        const updatedThread = await thread.update(update)
+        res.json(updatedThread)
+    } catch (err) {
+        res.json(err)
+    }
+}
+
+//edits thread based on commentId
+userController.editComment = async (req, res) => {
+    try {
+        const comment = await models.comment.findOne({
+            where: {
+                id: req.params.commentId
+            }
+        })
+        const update = req.body 
+        const updatedComment = await comment.update(update)
+        res.json(updatedComment)
+    } catch (err) {
+        res.json(err)
+    }
+}
+
+//deletes thread based on threadId
+userController.deleteThread = async (req, res) => {
+    try {
+        const thread = await models.thread.findOne({
+            where: {
+                id: req.params.threadId
+            }
+        })
+        await thread.destroy()
+        res.json('delted')
+    } catch (err) {
+        res.json(err)
+    }
+}
+
+//deletes comment based on commentId
+userController.deleteComment = async (req, res) => {
+    try {
+        const comment = await models.comment.findOne({
+            where: {
+                id: req.params.commentId
+            }
+        })
+        await comment.destroy()
+        res.json('delted')
+
+    } catch (err) {
+        res.json(err)
+    }
+}
+
 module.exports = userController

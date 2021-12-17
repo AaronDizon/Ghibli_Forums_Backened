@@ -26,4 +26,16 @@ userRoutes.get('/:threadId', userController.threadUser)
 //gets a user from the commentId (to display username of the comment)
 userRoutes.get('/:commentId', userController.commentUser)
 
+//updates thread based on threadId and userId
+userRoutes.put('/thread/:threadId', userController.editThread)
+
+//updates comment based on commentId 
+userRoutes.put('/comment/:commentId', userController.editComment)
+
+//deletes thread based on threadId
+userRoutes.delete('/thread/:threadId', userController.deleteThread)
+
+//deletes comment based on commmentId
+userRoutes.delete('/comment/:commentId', userController.deleteComment) 
+
 module.exports = userRoutes
