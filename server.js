@@ -19,6 +19,7 @@ app.use('/movies', movieRoutes)
 const userRoutes = require('./routes/userRoutes')
 app.use('/user', userRoutes)
 
-app.listen(3001, () => {
-    routesReport.print()
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log(`server listening on ${PORT}`)
   })
